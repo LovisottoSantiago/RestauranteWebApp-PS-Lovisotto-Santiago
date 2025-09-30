@@ -1,0 +1,129 @@
+.order-panel {
+  background: #fffaf3;
+  border-left: 2px solid #e6d3b3;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.order-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 100%;
+  max-width: 400px;
+  background: #fffdf8;
+  border: 1px solid #e0d5c3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.order-wrapper h2 {
+  font-size: 1.6rem;
+  margin: 1rem 0;
+  text-align: center;
+  color: #6b3e26;
+  flex-shrink: 0;
+}
+
+/* Lista scrollable */
+.order-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 1rem;
+}
+
+.order-items::-webkit-scrollbar {
+  width: 8px;
+}
+.order-items::-webkit-scrollbar-thumb {
+  background: #c49a6c;
+  border-radius: 4px;
+}
+
+/* Cada fila */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f0e6d6;
+}
+
+.order-name {
+  flex: 1;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Controles (cantidad + precio + eliminar) */
+.order-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-input {
+  width: 3rem;
+  padding: 0.3rem;
+  text-align: center;
+  border: 1px solid #c49a6c;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.order-price {
+  font-size: 0.9rem;
+  color: #444;
+  min-width: 60px;
+  text-align: right;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #a63d2f;
+  transition: transform 0.2s;
+}
+.remove-btn:hover {
+  transform: scale(1.2);
+  color: #8e2d22;
+}
+
+/* Footer */
+.order-summary {
+  border-top: 1px solid #d6c4a1;
+  padding: 1rem;
+  text-align: center;
+  flex-shrink: 0;
+  background: #faf7f2;
+}
+
+.order-summary p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.order-summary button {
+  padding: 0.6rem 1.2rem;
+  background: #a63d2f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.order-summary button:hover:not(:disabled) {
+  background: #8e2d22;
+}
+
+.order-summary button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

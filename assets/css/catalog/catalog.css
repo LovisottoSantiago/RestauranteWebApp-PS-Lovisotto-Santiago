@@ -1,0 +1,28 @@
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* catálogo más ancho que la orden */
+  height: 90vh; /* toda la pantalla */
+  overflow: hidden; /* evita scroll general */
+}
+
+/* Sección de catálogo */
+.catalog {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: #faf7f2; /* tono cálido tipo carta */
+  overflow-y: auto; /* scroll interno si hay muchos productos */
+}
+
+.catalog h2 {
+  font-size: 2rem;
+  color: #4a2c2a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
