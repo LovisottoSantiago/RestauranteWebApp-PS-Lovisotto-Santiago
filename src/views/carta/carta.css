@@ -1,0 +1,49 @@
+.carta-view {
+  background: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  border-radius: 12px;
+  padding: 32px 24px;
+  margin: 20px auto;
+
+  /* Responsive width: mínimo 90% en móviles, preferido 95vw, máximo 1300px */
+  width: clamp(90%, 95vw, 1300px);
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+/* Header de la carta */
+.carta-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.carta-header h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  color: var(--color-primary-dark);
+  font-family: var(--font-family-primary);
+}
+
+.carta-header p {
+  font-size: var(--font-size-body);
+  color: var(--color-gray);
+  margin: 8px 0 0;
+  font-family: var(--font-family-secondary);
+}
+
+/* Descripción de categoría */
+#category-description {
+  font-size: var(--font-size-body);
+  font-family: var(--font-family-secondary);
+  color: var(--color-dark-gray);
+  padding: 12px 16px;
+  border-left: 4px solid var(--color-primary);
+  background: var(--color-bg);
+  border-radius: 6px;
+}

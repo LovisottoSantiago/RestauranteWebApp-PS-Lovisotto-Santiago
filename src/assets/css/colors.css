@@ -1,0 +1,25 @@
+:root {
+  /* Colores principales - Paleta elegante y cálida */
+  --color-primary: #C9A961;
+  --color-primary-light: #E8D5A8;
+  --color-primary-dark: #A88B4A;
+
+  --color-secondary: #2C1810;
+  --color-secondary-dark: #1A0D08;
+
+  --color-accent: #8B4539;
+  --color-accent-dark: #6B3329;
+
+  /* Neutrales - Tonos cálidos */
+  --color-black: #1A0D08;
+  --color-dark-gray: #3E2723;
+  --color-gray: #6D4C41;
+  --color-light-gray: #D7CCC8;
+  --color-bg: #FAF7F2;
+  --color-white: #FFFBF5;
+
+  /* Feedback */
+  --color-success: #6B8E23;
+  --color-warning: #D4A574;
+  --color-error: #8B4539;
+}

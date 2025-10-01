@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-body);
+  background: var(--color-bg);
+  color: var(--color-dark-gray);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+h1 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  color: var(--color-secondary);
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  color: var(--color-secondary);
+  letter-spacing: 0.5px;
+}
+
+h3 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  color: var(--color-dark-gray);
+}
+
+p {
+  line-height: 1.7;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem 2vw;
+  box-sizing: border-box;
+}
+
+.carta-layout {
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.carta-layout main {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
