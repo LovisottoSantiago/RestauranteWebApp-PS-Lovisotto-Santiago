@@ -1,0 +1,212 @@
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary) 100%);
+}
+
+.hero-background {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 30% 50%, rgba(201, 169, 97, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(139, 69, 57, 0.1) 0%, transparent 40%);
+  animation: pulse 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-animation {
+  margin-bottom: 2rem;
+}
+
+.brand-name {
+  font-family: var(--font-family-primary);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-primary) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  filter: drop-shadow(0 4px 20px rgba(201, 169, 97, 0.4));
+  text-transform: uppercase;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+.brand-underline {
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-primary-light), var(--color-primary), transparent);
+  margin: 1.5rem auto;
+  animation: expandLine 1.8s ease-out 0.5s forwards;
+  box-shadow: 0 2px 15px rgba(201, 169, 97, 0.5);
+}
+
+@keyframes expandLine {
+  to { width: 400px; }
+}
+
+.hero-subtitle {
+  font-family: var(--font-family-secondary);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--color-light-gray);
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1s forwards;
+  font-weight: var(--font-weight-light);
+  letter-spacing: 3px;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.cta-button {
+  position: relative;
+  padding: 1.4rem 3.5rem;
+  font-family: var(--font-family-secondary);
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-secondary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 40px rgba(201, 169, 97, 0.4);
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.5s forwards;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cta-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(201, 169, 97, 0.6);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+}
+
+.cta-button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.button-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  to { left: 100%; }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+}
+
+.mouse {
+  width: 32px;
+  height: 52px;
+  border: 2px solid var(--color-primary);
+  border-radius: 16px;
+  margin: 0 auto 12px;
+  position: relative;
+}
+
+.wheel {
+  width: 4px;
+  height: 12px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+  0%, 100% { top: 10px; opacity: 1; }
+  50% { top: 28px; opacity: 0; }
+}
+
+.scroll-indicator p {
+  font-family: var(--font-family-secondary);
+  font-size: 0.95rem;
+  color: var(--color-primary-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-light);
+}
+
+@media (max-width: 768px) {
+  .brand-underline {
+    animation: expandLineMobile 1.8s ease-out 0.5s forwards;
+  }
+
+  @keyframes expandLineMobile {
+    to { width: 200px; }
+  }
+}
