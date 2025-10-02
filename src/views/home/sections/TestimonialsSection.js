@@ -5,7 +5,7 @@ export function TestimonialsSection() {
       <div class="testimonials-carousel">
         <div class="testimonial-card active">
           <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Una experiencia gastronómica excepcional. Cada plato es una obra maestra que combina sabor, presentación y creatividad de manera impecable."</p>
+          <p class="testimonial-text">"Una experiencia gastronómica excepcional. Cada plato es una obra maestra que combina sabor y creatividad de manera impecable."</p>
           <p class="testimonial-author">- María González</p>
         </div>
       </div>
@@ -17,7 +17,7 @@ export function initTestimonialsSection() {
   const testimonials = [
     {
       stars: '⭐⭐⭐⭐⭐',
-      text: 'Una experiencia gastronómica excepcional. Cada plato es una obra maestra que combina sabor, presentación y creatividad de manera impecable.',
+      text: 'Una experiencia gastronómica excepcional. Cada plato es una obra maestra que combina sabor y creatividad de manera impecable.',
       author: 'María González'
     },
     {

@@ -1,0 +1,27 @@
+.dish-card.with-add .dish-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.dish-card.with-add .carrito-btn {
+  color: var(--color-white);
+  cursor: pointer;
+  font-size: var(--font-size-body);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-accent);
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.dish-card.with-add .carrito-btn:hover {
+  background-color: var(--color-accent-dark, #6a2d23);
+}
+
+.dish-card.with-add .price {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}

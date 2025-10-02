@@ -1,7 +1,7 @@
 import { renderDishList } from "../../components/dish/dishList/dishList.js";
 import { renderCategoryList } from "../../components/category/categoryList/categoryList.js";
 
-export function renderCarta() {
+export function renderCard() {
   const container = document.getElementById("app");
   container.innerHTML = `
     <section class="carta-view">

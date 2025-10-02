@@ -7,7 +7,6 @@ export function renderDishCard(dish) {
     <div class="dish-card-content">
       <h2>${dish.name}</h2>
       <p>${dish.description}</p>
-      <span class="price">$${dish.price}</span>
     </div>
   `;
 
