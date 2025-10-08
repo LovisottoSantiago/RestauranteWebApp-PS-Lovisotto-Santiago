@@ -1,11 +1,11 @@
 import { renderHome } from "./views/home/home.js";
-import { renderCard } from "./views/card/card.js";
+import { renderMenu } from "./views/menu/menu.js";
 import { renderMyOrder } from "./views/myOrder/myOrder.js"
 
 // Tabla de rutas
 const routes = {
   "#/": renderHome,
-  "#/card": renderCard,
+  "#/menu": renderMenu,
   "#/myOrder": renderMyOrder,
 };
 

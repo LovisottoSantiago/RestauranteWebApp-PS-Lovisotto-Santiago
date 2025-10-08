@@ -4,7 +4,7 @@ export function CTASection() {
       <div class="cta-content">
         <h2>Descubre Nuestra Carta</h2>
         <p>Explora una selección de platos preparados con ingredientes frescos y llenos de sabor.</p>
-        <button class="cta-button secondary" onclick="window.location.hash='#/carta'">
+        <button class="cta-button secondary" onclick="window.location.hash='#/menu'">
           <span>Ver Carta Completa</span>
           <div class="button-shine"></div>
         </button>

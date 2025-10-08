@@ -1,12 +1,12 @@
 import { renderDishList } from "../../components/dish/dishList/dishList.js";
 import { renderCategoryList } from "../../components/category/categoryList/categoryList.js";
 
-export function renderCard() {
+export function renderMenu() {
   const container = document.getElementById("app");
   container.innerHTML = `
-    <section class="carta-view">
+    <section class="menu-view">
       <!-- Título general -->
-      <header class="carta-header">
+      <header class="menu-header">
         <h1>Nuestra Carta</h1>
         <p>Descubre nuestros platos y especialidades</p>
       </header>
