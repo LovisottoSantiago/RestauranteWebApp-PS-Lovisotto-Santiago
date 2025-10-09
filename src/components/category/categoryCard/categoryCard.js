@@ -1,4 +1,4 @@
-import { handleCategorySelection } from "./utils/categoryUtils.js";
+import { handleCategorySelection } from "../utils/categoryUtils.js";
 
 export function renderCategoryCard(category) {
   const card = document.createElement("div");

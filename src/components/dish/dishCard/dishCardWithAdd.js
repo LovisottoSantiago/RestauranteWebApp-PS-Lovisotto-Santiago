@@ -1,4 +1,5 @@
 import { renderDishCard } from "./dishCard.js";
+import { showToast } from "../../toast/toast.js";
 
 export function renderDishCardWithAdd(dish, onAddToCart) {
   const card = renderDishCard(dish);
@@ -11,8 +12,18 @@ export function renderDishCardWithAdd(dish, onAddToCart) {
   btn.classList.add("carrito-btn");
   btn.textContent = "Agregar a tu orden";
 
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", () => {    
     if (onAddToCart) onAddToCart(dish);
+    
+    showToast(`${dish.name} agregado al carrito`, 'success');
+    
+    btn.textContent = "✓ Agregado";
+    btn.classList.add("btn-added");
+    
+    setTimeout(() => {
+      btn.textContent = "Agregar a tu orden";
+      btn.classList.remove("btn-added");
+    }, 2000);
   });
 
   const price = document.createElement("span");

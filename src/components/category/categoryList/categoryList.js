@@ -13,13 +13,11 @@ export async function renderCategoryList() {
     
     container.innerHTML = "";
     
-    // Botón "Todas" con el mismo formato
     const allCategory = { id: 'all', name: 'Todas', order: -1 , description: 'Mostrando todos los platos.'};
     const allBtn = renderCategoryCard(allCategory);
     allBtn.classList.add('active');
     container.appendChild(allBtn);
-    
-    // Renderizar categorías ordenadas
+        
     const sortedCategories = categories.sort((a, b) => a.order - b.order);
     sortedCategories.forEach(category => {
       const card = renderCategoryCard(category);

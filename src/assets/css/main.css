@@ -1,0 +1,30 @@
+/* ----------------------------- Global ------------------------------ */
+@import url("../css/colors.css");
+@import url("../css/typography.css");
+@import url("../css/global.css");
+@import url("../css/navbar.css");
+
+/* ----------------------------- Componentes de platos ------------------------------ */
+@import url("../../components/dish/dishCard/dishCard.css");
+@import url("../../components/dish/dishCard/dishCardWithAdd.css");
+@import url("../../components/dish/dishList/dishList.css");
+
+/* ----------------------------- Componentes generales ------------------------------ */
+@import url("../../components/category/categoryCard/categoryCard.css");
+@import url("../../components/category/categoryList/categoryList.css");
+@import url("../../components/searchBar/searchBar.css");
+@import url("../../components/cart/cartItem/cartItem.css");
+@import url("../../components/toast/toast.css");
+@import url("../../components/checkout/checkoutModal/checkoutModal.css");
+
+/* ----------------------------- Vistas principales ------------------------------ */
+@import url("../../views/home/home.css");
+@import url("../../views/menu/menu.css");
+@import url("../../views/cart/cart.css");
+
+/* ----------------------------- Secciones del Home ------------------------------ */
+@import url("../../views/home/sections/css/HeroSection.css");
+@import url("../../views/home/sections/css/FeaturesSection.css");
+@import url("../../views/home/sections/css/CTASection.css");
+@import url("../../views/home/sections/css/GallerySection.css");
+@import url("../../views/home/sections/css/TestimonialsSection.css");

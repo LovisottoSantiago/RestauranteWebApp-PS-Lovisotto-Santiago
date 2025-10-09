@@ -2,9 +2,13 @@ import { API_BASE_URL, ENDPOINTS } from "../../config/constants.js";
 
 export async function getAllDishes(filters = {}) {
   const url = new URL(`${API_BASE_URL}${ENDPOINTS.dishes}`);
-
-  // Añadir filtros dinámicamente
-  Object.entries(filters).forEach(([key, value]) => {
+  
+  const finalFilters = {
+    onlyActive: true,  
+    ...filters        
+  };
+  
+  Object.entries(finalFilters).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== "all") {
       url.searchParams.append(key, value);
     }
@@ -19,4 +23,3 @@ export async function getAllDishes(filters = {}) {
     return [];
   }
 }
-

@@ -1,7 +1,7 @@
 export function GallerySection() {
   return `
     <div class="gallery-section">
-      <h2 class="section-title">Nuestras Creaciones</h2>
+      <h2 class="section-title">Nuestros Destacados</h2>
       <div class="gallery-grid">
       
         <div class="gallery-item" data-aos="zoom-in">

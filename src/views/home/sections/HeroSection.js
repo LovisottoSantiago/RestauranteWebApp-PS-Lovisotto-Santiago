@@ -8,7 +8,7 @@ export function HeroSection() {
           <div class="brand-underline"></div>
         </div>
         <p class="hero-subtitle">Una experiencia culinaria excepcional</p>
-        <button class="cta-button" onclick="window.location.hash='#/carta'">
+        <button class="cta-button" onclick="window.location.hash='#/menu'">
           <span>Ver Menú</span>
           <div class="button-shine"></div>
         </button>

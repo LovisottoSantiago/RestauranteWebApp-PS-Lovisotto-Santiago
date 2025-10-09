@@ -1,12 +1,12 @@
 import { renderHome } from "./views/home/home.js";
 import { renderMenu } from "./views/menu/menu.js";
-import { renderMyOrder } from "./views/myOrder/myOrder.js"
+import { renderMyCart } from "./views/cart/cart.js"
 
 // Tabla de rutas
 const routes = {
   "#/": renderHome,
   "#/menu": renderMenu,
-  "#/myOrder": renderMyOrder,
+  "#/cart": renderMyCart,
 };
 
 // Función router
