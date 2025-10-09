@@ -1,12 +1,14 @@
 import { renderHome } from "./views/home/home.js";
 import { renderMenu } from "./views/menu/menu.js";
 import { renderMyCart } from "./views/cart/cart.js"
+import { renderAdminLogin } from "./views/admin/Login/adminLogin.js";
 
 // Tabla de rutas
 const routes = {
   "#/": renderHome,
   "#/menu": renderMenu,
   "#/cart": renderMyCart,
+  "#/adminLogin": renderAdminLogin
 };
 
 // Función router

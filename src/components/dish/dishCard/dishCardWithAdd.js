@@ -17,7 +17,7 @@ export function renderDishCardWithAdd(dish, onAddToCart) {
     
     showToast(`${dish.name} agregado al carrito`, 'success');
     
-    btn.textContent = "✓ Agregado";
+    btn.textContent = "Agregado";
     btn.classList.add("btn-added");
     
     setTimeout(() => {

@@ -1,8 +1,5 @@
-/* components/search/searchBar/searchBar.css */
-
 .search-bar-container {
-  width: 100%;
-  max-width: 600px;
+  width: 35rem;
   margin: 0 auto 0;
 }
 
@@ -26,7 +23,7 @@
 .search-input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2); /* tono suave dorado */
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2); 
 }
 
 .search-input::placeholder {

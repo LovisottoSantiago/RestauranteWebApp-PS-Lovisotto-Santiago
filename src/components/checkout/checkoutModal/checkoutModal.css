@@ -1,12 +1,10 @@
-/* components/checkout/checkoutModal/checkoutModal.css */
-
 .checkout-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(44, 24, 16, 0.7); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,13 +13,13 @@
 }
 
 .checkout-modal {
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   max-width: 500px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 40px rgba(26, 13, 8, 0.4);
 }
 
 .checkout-modal-header {
@@ -29,20 +27,21 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-light-gray);
+  background-color: var(--color-bg);
 }
 
 .checkout-modal-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--color-secondary);
 }
 
 .close-btn {
   background: none;
   border: none;
   font-size: 2rem;
-  color: #999;
+  color: var(--color-gray);
   cursor: pointer;
   padding: 0;
   width: 32px;
@@ -50,11 +49,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .close-btn:hover {
-  color: #333;
+  color: var(--color-secondary-dark);
 }
 
 .checkout-form {
@@ -69,7 +68,7 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #333;
+  color: var(--color-secondary);
 }
 
 .form-group select,
@@ -77,25 +76,28 @@
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--color-light-gray);
   border-radius: 6px;
   font-size: 1rem;
   font-family: inherit;
-  transition: border-color 0.2s;
+  background: var(--color-white);
+  color: var(--color-secondary-dark);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group select:focus,
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.2);
 }
 
 .form-hint {
   display: block;
   margin-top: 0.25rem;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--color-gray);
 }
 
 .checkout-actions {
@@ -112,31 +114,27 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
-  background: #4CAF50;
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 .btn-primary:hover {
-  background: #45a049;
+  background: var(--color-primary-dark);
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: #e0e0e0;
-  color: #333;
+  background: var(--color-light-gray);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-accent) !important;
 }
 
 .btn-secondary:hover {
-  background: #d0d0d0;
+  background: var(--color-primary-light);
+  color: var(--color-secondary-dark);
 }
 
-@media (max-width: 768px) {
-  .checkout-modal {
-    max-height: 100vh;
-    border-radius: 0;
-  }
-}

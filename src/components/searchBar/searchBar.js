@@ -4,13 +4,7 @@ export function renderSearchBar(onSearch) {
   
   searchContainer.innerHTML = `
     <div class="search-bar">
-      <input 
-        type="text" 
-        id="search-input" 
-        class="search-input" 
-        placeholder="Buscar platos por nombre..."
-        autocomplete="off"
-      />
+      <input type="text" id="search-input" class="search-input" placeholder="Buscar platos por nombre..." autocomplete="off"/>
       <button id="clear-search-btn" class="clear-btn" style="display: none;">×</button>
     </div>
   `;

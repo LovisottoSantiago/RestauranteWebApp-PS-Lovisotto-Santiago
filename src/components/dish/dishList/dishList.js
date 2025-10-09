@@ -1,6 +1,6 @@
 import { getAllDishes } from "../../../services/dish/getAllDishes.js";
 import { renderDishCardWithAdd } from "../dishCard/DishCardWithAdd.js";
-import { addToCart } from "../utils/cart.js";
+import { addToCart } from "../../cart/utils/cartService.js";
 
 export async function renderDishList(filters = {}) {
   const dishes = await getAllDishes(filters);

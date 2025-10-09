@@ -2,7 +2,6 @@
 @import url("../css/colors.css");
 @import url("../css/typography.css");
 @import url("../css/global.css");
-@import url("../css/navbar.css");
 
 /* ----------------------------- Componentes de platos ------------------------------ */
 @import url("../../components/dish/dishCard/dishCard.css");
@@ -10,6 +9,7 @@
 @import url("../../components/dish/dishList/dishList.css");
 
 /* ----------------------------- Componentes generales ------------------------------ */
+@import url("../../components/navbar/navbar.css");
 @import url("../../components/category/categoryCard/categoryCard.css");
 @import url("../../components/category/categoryList/categoryList.css");
 @import url("../../components/searchBar/searchBar.css");
@@ -21,6 +21,7 @@
 @import url("../../views/home/home.css");
 @import url("../../views/menu/menu.css");
 @import url("../../views/cart/cart.css");
+@import url("../../views/admin/Login/adminLogin.css");
 
 /* ----------------------------- Secciones del Home ------------------------------ */
 @import url("../../views/home/sections/css/HeroSection.css");

@@ -1,7 +1,4 @@
-// components/toast/toast.js
-
 export function showToast(message, type = 'success', duration = 3000) {
-  // Crear el toast
   const toast = document.createElement('div');
   toast.classList.add('toast', `toast-${type}`);
   
@@ -12,20 +9,17 @@ export function showToast(message, type = 'success', duration = 3000) {
     </div>
   `;
   
-  // Agregar al body
   document.body.appendChild(toast);
   
-  // Animación de entrada
   setTimeout(() => {
     toast.classList.add('toast-show');
   }, 10);
   
-  // Remover después del tiempo especificado
   setTimeout(() => {
     toast.classList.remove('toast-show');
     setTimeout(() => {
       toast.remove();
-    }, 300); // Esperar a que termine la animación
+    }, 300);
   }, duration);
 }
 

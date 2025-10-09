@@ -1,11 +1,10 @@
-// views/cart/cart.js
 import { 
   getCart, 
   removeFromCart, 
   clearCart, 
   getCartTotal,
-  updateItemNotes  // ⬅️ Importar nueva función
-} from "../../components/dish/utils/cart.js";
+  updateItemNotes
+} from "../../components/cart/utils/cartService.js";
 import { renderCartItem } from "../../components/cart/cartItem/cartItem.js";
 import { renderCheckoutModal } from "../../components/checkout/checkoutModal/checkoutModal.js";
 import { createOrder } from "../../services/order/createOrder.js";

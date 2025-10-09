@@ -44,3 +44,40 @@
   background: var(--color-bg);
   border-radius: 6px;
 }
+
+div#search-sort-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items : center;
+}
+
+.search-sort-container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+}
+
+.sort-select {
+  padding: 0.6rem 1.2rem;
+  border: 1.5px solid var(--color-light-gray);
+  border-radius: 8px;
+  background: var(--color-white);
+  font-size: 0.95rem;
+  color: var(--color-dark-gray);
+  font-family: var(--font-family-secondary);
+  cursor: pointer;  
+}
+
+.sort-select:hover {
+  border-color: var(--color-primary);  
+  color: var(--color-secondary-dark);
+  box-shadow: 0 4px 10px rgba(26, 13, 8, 0.08);
+}
+
+.sort-select option {
+  background: var(--color-white);
+  color: var(--color-secondary);
+  font-family: var(--font-family-secondary);
+}
