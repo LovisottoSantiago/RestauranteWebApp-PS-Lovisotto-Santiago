@@ -16,7 +16,7 @@
 @import url("../../components/cart/cartItem/cartItem.css");
 @import url("../../components/toast/toast.css");
 @import url("../../components/checkout/checkoutModal/checkoutModal.css");
-@import url("../../components/order/addItemsModal/addItemsModal.css");
+@import url("../../components/modal/modal.css");
 
 /* ----------------------------- Vistas principales ------------------------------ */
 @import url("../../views/home/home.css");
@@ -24,6 +24,7 @@
 @import url("../../views/cart/cart.css");
 @import url("../../views/admin/Login/adminLogin.css");
 @import url("../../views/myOrders/orderDetail.css");
+@import url("../../views/myOrders/addItems/addItemsModal.css");
 
 /* ----------------------------- Secciones del Home ------------------------------ */
 @import url("../../views/home/sections/css/HeroSection.css");

@@ -1,6 +1,6 @@
 import { API_BASE_URL, ENDPOINTS } from "../../config/constants.js";
 import { showToast } from "../../components/toast/toast.js";
-import { openAddItems } from "../../components/order/addItemsModal/addItemsController.js";
+import { openAddItemsModal } from "./addItems/addItemsModal.js";
 
 export async function renderOrderDetail(orderId) {
   const container = document.getElementById("app");
@@ -73,5 +73,5 @@ function renderOrder(order, container) {
 
 function attachOrderEvents(orderNumber, content) {
   const addBtn = content.querySelector("#add-items-btn");
-  addBtn.addEventListener("click", () => openAddItems(orderNumber));
+  addBtn.addEventListener("click", () => openAddItemsModal(orderNumber));
 }

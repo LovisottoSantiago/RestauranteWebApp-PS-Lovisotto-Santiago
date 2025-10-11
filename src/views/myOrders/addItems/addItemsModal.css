@@ -1,0 +1,12 @@
+.add-items-modal .menu-view {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;  
+}
+
+#add-items-modal {
+  width: 100rem;
+}
