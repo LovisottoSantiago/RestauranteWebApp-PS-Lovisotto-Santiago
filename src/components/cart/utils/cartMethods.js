@@ -35,6 +35,16 @@ export function updateItemNotes(dishId, notes) {
   }
 }
 
+export function updateItemQuantity(dishId, quantity) {
+  const cart = getCart();
+  const item = cart.find(i => i.id === dishId);
+  if (!item) return cart;
+
+  item.quantity = quantity;
+  persist(cart);
+  return cart;
+}
+
 export function removeFromCart(dishId) {
   const cart = getCart().filter(item => item.id !== dishId);
   persist(cart);
