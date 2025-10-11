@@ -5,6 +5,7 @@ import { renderCartItem } from "./cartItem/cartItem.js";
 import { renderCheckoutModal } from "../checkout/checkoutModal/checkoutModal.js";
 import { createOrder } from "../../services/order/createOrder.js";
 import { showToast } from "../toast/toast.js";
+import { formatArgentineTime } from "../../components/time/formatTime.js";
 
 export function renderCart() {
   const section = document.createElement("section");
@@ -114,15 +115,13 @@ async function handleCheckout(checkoutData, section) {
   }
 }
 
-
 function renderOrderConfirmation(section, order) {
   section.innerHTML = `
-    <div class="confirmation-icon">✓</div>
     <h1>¡Pedido Confirmado!</h1>
     <div class="order-details">
       <p>Número de orden: <strong>#${order.orderNumber}</strong></p>
       <p>Total: <strong>$${order.totalAmount.toFixed(2)}</strong></p>
-      <p>Realizado: ${new Date(order.createdAt).toLocaleString("es-AR")}</p>
+      <p>Realizado: ${formatArgentineTime(order.createdAt)}</p>
     </div>
     <div class="confirmation-actions">
       <button id="back-to-menu" class="btn-primary">Volver al menú</button>

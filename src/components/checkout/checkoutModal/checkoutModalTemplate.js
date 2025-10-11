@@ -1,4 +1,3 @@
-// checkoutModalTemplate.js
 export function createCheckoutModalHTML(deliveryTypes) {
   return `
     <div class="checkout-modal">

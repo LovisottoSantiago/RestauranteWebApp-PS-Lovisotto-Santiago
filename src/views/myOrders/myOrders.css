@@ -1,0 +1,107 @@
+.my-orders-view {
+  max-width: 100rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 1rem;
+}
+
+.orders-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.orders-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.orders-list p {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-gray);
+  font-size: 1rem;
+}
+
+.order-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-light-gray);
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.order-card-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-secondary);
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--color-light-gray);
+  padding-bottom: 0.4rem;
+}
+
+.order-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.order-card-body p {
+  font-size: 0.95rem;
+  color: var(--color-dark-gray);
+  margin: 0;
+}
+
+.order-card-body strong {
+  color: var(--color-secondary);
+}
+
+.order-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.order-card-footer .btn-secondary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.order-card-footer .btn-secondary:hover {
+  background: var(--color-primary-dark);
+}
+
+#order-items-separator {
+  width: 20rem;
+}

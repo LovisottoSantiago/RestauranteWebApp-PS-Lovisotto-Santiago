@@ -1,5 +1,6 @@
-import { API_BASE_URL, ENDPOINTS } from "../../config/constants.js";
+import { getOrderById } from "../../services/order/getOrderById.js";
 import { showToast } from "../../components/toast/toast.js";
+import { formatArgentineTime } from "../../components/time/formatTime.js";
 
 export async function renderMyOrders() {
   const container = document.getElementById("app");
@@ -23,29 +24,46 @@ export async function renderMyOrders() {
   }
 
   try {
-    const promises = savedOrders.map(id =>
-      fetch(`${API_BASE_URL}${ENDPOINTS.orders}/${id}`, {
-        method: "GET", // en tu API el GET individual está definido como OPTIONS
-      }).then(r => r.ok ? r.json() : null)
-    );
-
-    const results = (await Promise.all(promises)).filter(Boolean);
+    const results = (
+      await Promise.all(
+        savedOrders.map(async id => {
+          try {
+            const order = await getOrderById(id);
+            return order || null;
+          } catch {
+            console.warn(`[renderMyOrders] No se pudo obtener la orden #${id}`);
+            return null;
+          }
+        })
+      )
+    ).filter(Boolean);
 
     if (results.length === 0) {
       ordersContainer.innerHTML = `<p>No se encontraron comandas activas.</p>`;
       return;
     }
 
-    ordersContainer.innerHTML = results.map(order => `
-      <article class="order-card">
-        <h2>Orden #${order.orderNumber}</h2>
-        <p>Total: $${order.totalAmount.toFixed(2)}</p>
-        <p>Estado: ${order.status?.name || "Desconocido"}</p>
-        <p>Entrega: ${order.deliveryType?.name || "N/A"}</p>
-        <p>Fecha: ${new Date(order.createdAt).toLocaleString("es-AR")}</p>
-        <button class="btn-secondary" data-id="${order.orderNumber}">Ver detalle</button>
-      </article>
-    `).join("");
+    ordersContainer.innerHTML = results
+      .map(order => `
+        <article class="order-card">
+          <header class="order-card-header">
+            <h2>Orden #${order.orderNumber}</h2>
+          </header>
+          <div class="order-card-body">
+            <p><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
+            <p><strong>Estado:</strong> ${order.status?.name || "Desconocido"}</p>
+            <p><strong>Tipo de entrega:</strong> ${order.deliveryType?.name || "N/A"}</p>
+            <p><strong>Creada:</strong> ${formatArgentineTime(order.createdAt)}</p>
+            <hr id="order-items-separator" />
+          </div>
+          <footer class="order-card-footer">          
+            <button class="btn-secondary" data-id="${order.orderNumber}">
+              Ver detalle
+            </button>
+          </footer>
+        </article>
+      `)
+      .join("");
 
     ordersContainer.querySelectorAll("button[data-id]").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -53,7 +71,7 @@ export async function renderMyOrders() {
       });
     });
   } catch (err) {
-    console.error(err);
+    console.error("[renderMyOrders] Error:", err);
     showToast("Error al cargar tus comandas", "error");
   }
 }
