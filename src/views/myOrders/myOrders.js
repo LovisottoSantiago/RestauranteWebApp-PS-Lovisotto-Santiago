@@ -38,6 +38,8 @@ export async function renderMyOrders() {
       )
     ).filter(Boolean);
 
+    results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
     if (results.length === 0) {
       ordersContainer.innerHTML = `<p>No se encontraron comandas activas.</p>`;
       return;

@@ -1,0 +1,236 @@
+/* === PANEL ADMINISTRADOR === */
+
+.admin-view {
+  padding: 2rem;
+  background: var(--color-bg);
+  min-height: 100vh;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--color-light-gray);
+  padding-bottom: 1rem;
+}
+
+.admin-header h2 {
+  font-size: 1.8rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+#admin-logout {
+  background: var(--color-danger, #d9534f);
+  color: var(--color-white);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+#admin-logout:hover {
+  background: #b4433f;
+}
+
+.admin-orders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+
+/* === TARJETA DE ORDEN === */
+
+.admin-order-card {
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: all 0.25s ease;
+  border: 1px solid var(--color-light-gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.admin-order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.admin-order-card.locked {
+  opacity: 0.55;
+  filter: grayscale(0.3);
+  pointer-events: none;
+}
+
+.admin-order-card header h3 {
+  font-size: 1.3rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.admin-order-card p {
+  font-size: 0.95rem;
+  margin: 0.2rem 0;
+  color: var(--color-dark-gray);
+}
+
+.admin-order-card footer {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-secondary);
+  transform: scale(1.03);
+}
+
+.btn-primary:disabled {
+  background: var(--color-gray);
+  cursor: not-allowed;
+}
+
+
+.modal-overlay-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content-admin {
+  background: var(--color-white);
+  border-radius: 12px;
+  width: 95%;
+  max-width: 750px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.8rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-header-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-light-gray);
+  padding-bottom: 0.8rem;
+}
+
+.modal-header h2 {
+  font-size: 1.4rem;
+  color: var(--color-secondary);
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-dark-gray);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--color-primary);
+}
+
+.modal-body {
+  margin-top: 1.2rem;
+}
+
+.modal-summary {
+  margin-bottom: 1rem;
+}
+
+.modal-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.modal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-light-gray);
+  border-radius: 10px;
+  padding: 0.8rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.modal-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-item img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--color-light-gray);
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.item-info h3 {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.3rem;
+}
+
+.status-select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 6px;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.btn-save-status {
+  align-self: flex-start;
+  margin-top: 0.6rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-save-status:hover {
+  background: var(--color-secondary);
+}
+
+

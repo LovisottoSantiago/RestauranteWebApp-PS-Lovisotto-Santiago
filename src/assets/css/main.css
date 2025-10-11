@@ -27,6 +27,7 @@
 @import url("../../views/myOrders/orderDetail.css");
 @import url("../../views/myOrders/addItems/addItemsModal.css");
 @import url("../../views/myOrders/myOrders.css");
+@import url("../../views/admin/admin.css");
 
 /* ----------------------------- Secciones del Home ------------------------------ */
 @import url("../../views/home/sections/css/HeroSection.css");
