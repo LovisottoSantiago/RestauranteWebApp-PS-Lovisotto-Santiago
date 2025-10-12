@@ -1,4 +1,10 @@
 export function createCheckoutModalHTML(deliveryTypes) {
+  const deliveryMap = {
+    "Delivery": "Entrega a domicilio",
+    "Take away": "Para llevar",
+    "Dine in": "Comer en el restaurante"
+  };
+
   return `
     <div class="checkout-modal">
       <div class="checkout-modal-header">
@@ -12,7 +18,7 @@ export function createCheckoutModalHTML(deliveryTypes) {
           <select id="delivery-type" name="deliveryType" required>
             <option value="">Selecciona una opción</option>
             ${deliveryTypes.map(type => 
-              `<option value="${type.id}">${type.name}</option>`
+              `<option value="${type.id}">${deliveryMap[type.name] || type.name}</option>`
             ).join('')}
           </select>
         </div>

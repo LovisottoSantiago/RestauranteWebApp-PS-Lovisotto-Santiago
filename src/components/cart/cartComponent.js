@@ -1,6 +1,4 @@
-import { 
-  getCart, removeFromCart, clearCart, getCartTotal, updateItemNotes, updateItemQuantity 
-} from "./utils/cartService.js";
+import { getCart, removeFromCart, clearCart, getCartTotal, updateItemNotes, updateItemQuantity } from "./utils/cartService.js";
 import { renderCartItem } from "./cartItem/cartItem.js";
 import { renderCheckoutModal } from "../checkout/checkoutModal/checkoutModal.js";
 import { createOrder } from "../../services/order/createOrder.js";

@@ -70,6 +70,14 @@ function renderOrder(container) {
   const content = container.querySelector("#order-content");
   const editable = orderState.meta.status.id !== 4 && orderState.meta.status.id !== 5;
 
+  // Ocultar botones si la orden está cerrada
+  if (orderState.meta.status.id === 5) {
+    const addBtn = container.querySelector("#add-items-btn");
+    const confirmBtn = container.querySelector("#confirm-btn");
+    if (addBtn) addBtn.style.display = "none";
+    if (confirmBtn) confirmBtn.style.display = "none";
+  }
+
   const orderItemsContainer = document.createElement("div");
   orderItemsContainer.classList.add("order-items-grid");
 

@@ -6,7 +6,7 @@ export function renderNavbar() {
       <ul class="nav-links">
         <li><a href="#/" data-route="#/">Inicio</a></li>
         <li><a href="#/menu" data-route="#/menu">Carta</a></li>
-        <li><a href="#/cart" data-route="#/cart">Crear orden</a></li>
+        <li><a href="#/cart" data-route="#/cart">Mi orden</a></li>
         <li><a href="#/myOrders" data-route="#/myOrders">Editar orden</a></li>
         <li><a href="#/adminLogin" data-route="#/adminLogin">Admin</a></li>
       </ul>
