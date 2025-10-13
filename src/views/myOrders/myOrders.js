@@ -37,15 +37,17 @@ export async function renderMyOrders() {
         })
       )
     ).filter(Boolean);
+    
+    const activeOrders = results.filter(o => o.status?.id !== 5);
 
-    results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    activeOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-    if (results.length === 0) {
+    if (activeOrders.length === 0) {
       ordersContainer.innerHTML = `<p>No se encontraron comandas activas.</p>`;
       return;
     }
 
-    ordersContainer.innerHTML = results
+    ordersContainer.innerHTML = activeOrders
       .map(order => `
         <article class="order-card">
           <header class="order-card-header">
@@ -58,7 +60,7 @@ export async function renderMyOrders() {
             <p><strong>Creada:</strong> ${formatArgentineTime(order.createdAt)}</p>
             <hr id="order-items-separator" />
           </div>
-          <footer class="order-card-footer">          
+          <footer class="order-card-footer">
             <button class="btn-secondary" data-id="${order.orderNumber}">
               Ver detalle
             </button>
