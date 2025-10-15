@@ -3,13 +3,9 @@ import { renderCategoryList } from "../../../components/category/categoryList/ca
 import { renderSearchBar } from "../../../components/searchBar/searchBar.js";
 import { addItemsFilters } from "./addItemsFilter.js";
 import { renderDishCardWithAdd } from "../../../components/dish/dishCard/DishCardWithAdd.js";
-import { showToast } from "../../../components/toast/toast.js";
-import { API_BASE_URL, ENDPOINTS } from "../../../config/constants.js";
+import { getAllDishes } from "../../../services/dish/getAllDishes.js";
 import { updateOrder } from "../../../services/order/updateOrder.js";
 
-/**
- * Modal principal para agregar platos a una orden existente (PUT directo)
- */
 export async function openAddItemsModal(orderId, onAddedCallback) {
   const modalContent = `
     <div class="menu-view add-items-modal" id="add-items-modal">
@@ -31,9 +27,6 @@ export async function openAddItemsModal(orderId, onAddedCallback) {
   return overlay;
 }
 
-/**
- * Renderiza la barra de búsqueda y ordenamiento
- */
 function setupAddItemsHeader(overlay, orderId) {
   const wrapper = overlay.querySelector("#search-sort-wrapper");
 
@@ -66,28 +59,27 @@ async function updateDishList(overlay, orderId) {
   await renderDishListWithAdd(overlay, orderId, filters);
 }
 
-/**
- * Renderiza la lista de platos usando el componente renderDishCardWithAdd
- */
-async function renderDishListWithAdd(overlay, orderId, onAddedCallback) {
+export async function renderDishListWithAdd(overlay, orderId, onAddedCallback) {
   const list = overlay.querySelector("#dish-list");
   list.innerHTML = `<p>Cargando platos...</p>`;
 
-  try {
-    const res = await fetch(`${API_BASE_URL}${ENDPOINTS.dishes}`);
-    if (!res.ok) throw new Error("Error al obtener platos");
-    const dishes = await res.json();
+  const dishes = await getAllDishes();
 
-    list.innerHTML = "";
-    dishes.forEach((dish) => {
-      const card = renderDishCardWithAdd(dish, async () => {
-        const confirmed = confirm(`¿Agregar "${dish.name}" a la orden?`);
-        if (!confirmed) return;
+  if (!dishes.length) {
+    list.innerHTML = `<p>No hay platos disponibles.</p>`;
+    return;
+  }
 
+  list.innerHTML = "";
+
+  dishes.forEach((dish) => {
+    const card = renderDishCardWithAdd(
+      dish,
+      async () => {
         const payload = {
           items: [
             {
-              id: dish.id,  // Dish UUID
+              id: dish.id,
               quantity: 1,
               notes: "",
             },
@@ -95,19 +87,15 @@ async function renderDishListWithAdd(overlay, orderId, onAddedCallback) {
         };
 
         try {
-          await updateOrder(orderId, payload);
-          showToast(`"${dish.name}" agregado correctamente`, "success");
+          await updateOrder(orderId, payload);          
           if (onAddedCallback) await onAddedCallback();
         } catch (err) {
           console.error("[Add Item PUT Error]", err);
-          showToast("Error al agregar plato", "error");
         }
-      });
+      },
+      { confirmBeforeAdd: true } 
+    );
 
-      list.appendChild(card);
-    });
-  } catch (err) {
-    console.error(err);
-    list.innerHTML = `<p>Error al cargar los platos.</p>`;
-  }
+    list.appendChild(card);
+  });
 }

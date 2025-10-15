@@ -4,6 +4,7 @@ import { renderCheckoutModal } from "../checkout/checkoutModal/checkoutModal.js"
 import { createOrder } from "../../services/order/createOrder.js";
 import { showToast } from "../toast/toast.js";
 import { formatArgentineTime } from "../../components/time/formatTime.js";
+import { showConfirmModal } from "../confirmModal/confirmModal.js";
 
 export function renderCart() {
   const section = document.createElement("section");
@@ -59,11 +60,11 @@ function updateCartUI(section) {
 
 function attachCartEvents(section) {
   section.querySelector("#clear-cart-btn")?.addEventListener("click", () => {
-    if (confirm("¿Vaciar la orden?")) {
-      clearCart();
-      updateCartUI(section);
-      showToast("Orden vaciada", "info");
-    }
+      showConfirmModal("¿Vaciar la orden?", () => {
+        clearCart();
+        updateCartUI(section);
+        showToast("Orden vaciada", "info");
+      });
   });
 
   section.querySelector("#checkout-btn")?.addEventListener("click", async () => {

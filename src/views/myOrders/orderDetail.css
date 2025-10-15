@@ -49,16 +49,6 @@
   background: var(--color-primary-dark);
 }
 
-.btn-secondary {
-  background: var(--color-light-gray);
-  color: var(--color-dark-gray);
-}
-
-.btn-secondary:hover {
-  background: var(--color-gray);
-  color: var(--color-white);
-}
-
 .btn-success {
   background: var(--color-success);
   color: var(--color-white);

@@ -127,14 +127,5 @@
   transform: translateY(-2px);
 }
 
-.btn-secondary {
-  background: var(--color-light-gray);
-  color: var(--color-secondary);
-  border: 2px solid var(--color-accent) !important;
-}
 
-.btn-secondary:hover {
-  background: var(--color-primary-light);
-  color: var(--color-secondary-dark);
-}
 

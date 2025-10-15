@@ -17,11 +17,3 @@
   --font-weight-extrabold: 800;
 }
 
-@media (max-width: 768px) {
-  :root {
-    --font-size-h1: 2.5rem;
-    --font-size-h2: 2rem;
-    --font-size-h3: 1.5rem;
-    --font-size-body: 1rem;
-  }
-}

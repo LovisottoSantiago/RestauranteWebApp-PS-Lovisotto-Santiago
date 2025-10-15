@@ -80,3 +80,14 @@ body::-webkit-scrollbar {
 img {
   pointer-events: none;
 }
+
+
+.btn-secondary {
+  background-color: var(--color-gray);
+  border: none !important;
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-dark-gray);
+}

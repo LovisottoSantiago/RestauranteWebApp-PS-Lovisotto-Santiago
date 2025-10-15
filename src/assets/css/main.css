@@ -19,6 +19,8 @@
 @import url("../../components/checkout/checkoutModal/checkoutModal.css");
 @import url("../../components/modal/modal.css");
 @import url("../../components/order/orderItem/orderItem.css");
+@import url("../../components/cart/cartComponent.css");
+@import url("../../components/confirmModal/confirmModal.css");
 
 /* ----------------------------- Vistas principales ------------------------------ */
 @import url("../../views/home/home.css");
