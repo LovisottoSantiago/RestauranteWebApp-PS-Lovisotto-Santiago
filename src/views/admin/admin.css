@@ -234,3 +234,94 @@
 }
 
 
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-size: 0.85rem;
+  color: var(--color-gray);
+  margin-bottom: 0.3rem;
+}
+
+.filter-group select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 6px;
+  background: var(--color-white);
+  color: var(--color-black);
+  min-width: 180px;
+}
+
+.date-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.date-display {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 6px;
+  background: var(--color-white);
+  color: var(--color-black);
+  width: 140px;
+  text-align: center;
+  font-family: monospace;
+}
+
+.date-native {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none; 
+}
+
+.open-calendar {
+  border: 1px solid var(--color-light-gray);
+  background: var(--color-white);
+  color: var(--color-secondary);
+  border-radius: 6px;
+  padding: 0.35rem 0.45rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.open-calendar:hover {
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.open-calendar svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* Grid tarjetas (mantengo tu estilo) */
+.admin-orders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}

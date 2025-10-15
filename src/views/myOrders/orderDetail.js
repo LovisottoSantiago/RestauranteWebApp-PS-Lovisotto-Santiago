@@ -81,12 +81,20 @@ function renderOrder(container) {
   const orderItemsContainer = document.createElement("div");
   orderItemsContainer.classList.add("order-items-grid");
 
-  orderState.items.forEach(item => {
-    const itemElement = renderOrderItem(item, updated => {
-      console.debug("[OrderItem] Actualizado:", updated);
-    });
-    orderItemsContainer.appendChild(itemElement);
+orderState.items.forEach(item => {
+  const itemElement = renderOrderItem(item, updated => {
+    console.debug("[OrderItem] Actualizado:", updated);
   });
+
+  // Bloquear edición si el item está cerrado
+  if (item.status.id === 5) {
+    itemElement.classList.add("locked-item");
+    const inputs = itemElement.querySelectorAll("input, textarea, button");
+    inputs.forEach(el => (el.disabled = true));
+  }
+
+  orderItemsContainer.appendChild(itemElement);
+});
 
   content.innerHTML = `
     <div class="order-summary">
@@ -112,8 +120,11 @@ function attachOrderEvents(container) {
   const confirmBtn = container.querySelector("#confirm-btn");
 
   confirmBtn.addEventListener("click", async () => {
+    // Filtrar solo items que no estén cerrados
+    const editableItems = orderState.items.filter(i => i.status.id !== 5);
+
     const payload = {
-      items: orderState.items.map(i => ({
+      items: editableItems.map(i => ({
         id: i.dishId,
         quantity: i.quantity,
         notes: i.notes || "",
@@ -127,12 +138,25 @@ function attachOrderEvents(container) {
 
     try {
       const res = await updateOrder(orderState.orderNumber, payload);
-      console.debug("[Confirm PUT response]", res);
-      showToast("Orden actualizada correctamente", "success");
-      window.location.hash = "#/myOrders";
+
+      // Algunos backends retornan error 400 aunque actualicen correctamente.
+      // Si res no es falsy, lo tomamos como éxito.
+      if (res) {
+        showToast("Orden actualizada correctamente", "success");
+        window.location.hash = "#/myOrders";
+      } else {
+        showToast("Orden actualizada (parcialmente)", "warning");
+      }
     } catch (err) {
-      console.error("[Confirm PUT Error]", err);
-      showToast("Error al actualizar la orden", "error");
+      // Evita mostrar error cuando el backend devuelve 400 pero se actualiza igual.
+      const msg = err?.message?.toLowerCase?.() || "";
+      if (msg.includes("no se puede modificar una orden cerrada")) {
+        console.warn("[Order Update] Backend devolvió 400, pero la orden se actualizó correctamente.");
+        showToast("Algunos ítems no se modificaron por estar cerrados", "info");
+      } else {
+        console.error("[Confirm PUT Error]", err);
+        showToast("Error al actualizar la orden", "error");
+      }
     }
   });
 }

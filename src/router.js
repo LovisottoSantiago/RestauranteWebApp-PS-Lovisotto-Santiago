@@ -2,19 +2,17 @@ import { renderHome } from "./views/home/home.js";
 import { renderMenu } from "./views/menu/menu.js";
 import { renderMyCart } from "./views/cart/cart.js";
 import { renderAdminLogin } from "./views/admin/Login/adminLogin.js";
-import { renderAdmin } from "./views/admin/admin.js"; 
-import { renderMyOrders } from "./views/myOrders/myOrders.js"; 
+import { renderAdmin } from "./views/admin/admin.js";
+import { renderMyOrders } from "./views/myOrders/myOrders.js";
 import { renderOrderDetail } from "./views/myOrders/orderDetail.js";
+import { showToast } from "./components/toast/toast.js";
 
 export function router() {
   const hash = window.location.hash;
 
-  // Rutas con parámetros
   const orderDetailMatch = hash.match(/^#\/order\/(\d+)$/);
-
   if (orderDetailMatch) {
-    const orderId = orderDetailMatch[1];
-    renderOrderDetail(orderId);
+    renderOrderDetail(orderDetailMatch[1]);
     return;
   }
 
@@ -35,15 +33,16 @@ export function router() {
       renderMyOrders();
       break;
 
-    case "#/admin":
-      const isAdmin = localStorage.getItem("isAdminLoggedIn") === "true";
+    case "#/admin": {
+      const isAdmin = sessionStorage.getItem("isAdminLoggedIn") === "true";
       if (isAdmin) {
         renderAdmin();
       } else {
-        alert("Acceso denegado — Tenés que iniciar sesión primero");
+        showToast("Acceso denegado. Iniciá sesión primero.", "error");
         window.location.hash = "#/adminLogin";
       }
       break;
+    }
 
     case "#/":
     default:
@@ -51,3 +50,6 @@ export function router() {
       break;
   }
 }
+
+window.addEventListener("hashchange", router);
+window.addEventListener("load", router);

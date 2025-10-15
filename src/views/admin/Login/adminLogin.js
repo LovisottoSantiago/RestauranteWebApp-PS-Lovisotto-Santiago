@@ -1,3 +1,5 @@
+import { showToast } from "../../../components/toast/toast.js";
+
 export function renderAdminLogin() {
   const container = document.getElementById("app");
   container.innerHTML = `
@@ -7,7 +9,13 @@ export function renderAdminLogin() {
         <p>Ingresar contraseña para continuar:</p>        
 
         <div class="input-container">
-          <input type="password" id="admin-login-input" placeholder="ej: proyectohardware" maxlength="40"/>
+          <input 
+            type="password" 
+            id="admin-login-input" 
+            placeholder="ej: proyectohardware" 
+            maxlength="40"
+            autocomplete="off"
+          />
           <span id="toggle-password" class="eye-icon" title="Mostrar contraseña">
             <i class="fas fa-eye" id="eye-icon"></i>
           </span>
@@ -29,34 +37,56 @@ export function renderAdminLogin() {
   const toggle = document.getElementById("toggle-password");
   const eyeIcon = document.getElementById("eye-icon");
 
+  // Hash predefinido (sha256)
+  const VALID_HASH = "ef4af5f4d645075f05af10baca4a9b2e0867722eb894dc09b5041c42c1d3ab48";
+
+  // Cancelar: volver al inicio
   cancelBtn.addEventListener("click", () => {
     window.location.hash = "#/";
   });
 
-  submitBtn.addEventListener("click", () => {
-    const value = input.value.trim().toLowerCase();
-    if (value === "proyectosoftware") {
-      localStorage.setItem("isAdminLoggedIn", "true"); 
-      window.location.hash = "#/admin";
-    } else {
-      alert("Respuesta incorrecta");
-      input.value = "";
-      input.focus();
-    }
-  });
-
+  // Mostrar / ocultar contraseña
   toggle.addEventListener("click", () => {
     const isPassword = input.getAttribute("type") === "password";
     input.setAttribute("type", isPassword ? "text" : "password");
 
     if (isPassword) {
-      eyeIcon.classList.remove("fa-eye");
-      eyeIcon.classList.add("fa-eye-slash");
+      eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
       toggle.title = "Ocultar contraseña";
     } else {
-      eyeIcon.classList.remove("fa-eye-slash");
-      eyeIcon.classList.add("fa-eye");
+      eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
       toggle.title = "Mostrar contraseña";
+    }
+  });
+
+  // Hashear con SHA-256
+  async function hashPassword(str) {
+    const buffer = new TextEncoder().encode(str);
+    const digest = await crypto.subtle.digest("SHA-256", buffer);
+    return Array.from(new Uint8Array(digest))
+      .map(b => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  // Validar contraseña
+  submitBtn.addEventListener("click", async () => {
+    const value = input.value.trim().toLowerCase();
+
+    if (!value) {
+      showToast("Debe ingresar una contraseña", "warning");
+      return;
+    }
+
+    const hashed = await hashPassword(value);
+
+    if (hashed === VALID_HASH) {
+      sessionStorage.setItem("isAdminLoggedIn", "true"); // solo sesión actual
+      showToast("Acceso concedido", "success");
+      window.location.hash = "#/admin";
+    } else {
+      showToast("Contraseña incorrecta", "error");
+      input.value = "";
+      input.focus();
     }
   });
 }
