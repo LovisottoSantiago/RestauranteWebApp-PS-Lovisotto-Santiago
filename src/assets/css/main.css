@@ -3,16 +3,15 @@
 @import url("../css/typography.css");
 @import url("../css/global.css");
 
-/* ----------------------------- Componentes de platos ------------------------------ */
-@import url("../../components/dish/dishCard/dishCard.css");
-@import url("../../components/dish/dishCard/dishCardWithAdd.css");
-@import url("../../components/dish/dishList/dishList.css");
 
 /* ----------------------------- Componentes generales ------------------------------ */
 @import url("../../components/navbar/navbar.css");
 @import url("../../components/footer/footer.css");
 @import url("../../components/category/categoryCard/categoryCard.css");
 @import url("../../components/category/categoryList/categoryList.css");
+@import url("../../components/dish/dishCard/dishCard.css");
+@import url("../../components/dish/dishCard/dishCardWithAdd.css");
+@import url("../../components/dish/dishList/dishList.css");
 @import url("../../components/searchBar/searchBar.css");
 @import url("../../components/cart/cartItem/cartItem.css");
 @import url("../../components/toast/toast.css");
@@ -21,6 +20,7 @@
 @import url("../../components/order/orderItem/orderItem.css");
 @import url("../../components/cart/cartComponent.css");
 @import url("../../components/confirmModal/confirmModal.css");
+
 
 /* ----------------------------- Vistas principales ------------------------------ */
 @import url("../../views/home/home.css");
@@ -31,6 +31,7 @@
 @import url("../../views/myOrders/addItems/addItemsModal.css");
 @import url("../../views/myOrders/myOrders.css");
 @import url("../../views/admin/admin.css");
+
 
 /* ----------------------------- Secciones del Home ------------------------------ */
 @import url("../../views/home/sections/css/HeroSection.css");

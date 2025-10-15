@@ -1,8 +1,10 @@
-import { renderStatusCard, mapStatusToSpanish } from "../../components/status/statusCard.js";
+import { mapStatusToSpanish } from "../../components/statusMapper/statusMapper.js";
 
 export async function openOrderItemsModal(order, onUpdate) {
   const existing = document.getElementById("order-items-modal");
   if (existing) existing.remove();
+
+  const defaultImage = "/src/assets/images/img-not-found.jpg";
 
   const modal = document.createElement("div");
   modal.id = "order-items-modal";
@@ -11,7 +13,7 @@ export async function openOrderItemsModal(order, onUpdate) {
   modal.innerHTML = `
     <div class="modal-content-admin">
       <header class="modal-header-admin">
-        <h2>Detalle de Orden</h2>
+        <h2>Detalle de Orden #${order.orderNumber}</h2>
         <button id="close-modal" class="close-btn">×</button>
       </header>
 
@@ -20,13 +22,21 @@ export async function openOrderItemsModal(order, onUpdate) {
         <div class="modal-items">
           ${order.items
             .map(
-              i => `
+              (i) => `
               <div class="modal-item" data-item-id="${i.id}">
-                <img src="${i.dish.image || "https://via.placeholder.com/80"}" alt="${i.dish.name}">
+                <div class="modal-item-image-wrapper">
+                  <img 
+                    src="${i.dish.image || defaultImage}" 
+                    alt="${i.dish.name}" 
+                    onerror="this.onerror=null; this.src='${defaultImage}';"
+                    class="modal-item-image"
+                  />
+                </div>
+
                 <div class="item-info">
                   <h3>${i.dish.name}</h3>
                   <p><strong>Estado actual:</strong> ${mapStatusToSpanish(i.status.id)}</p>
-                  
+
                   <label>Actualizar estado:</label>
                   <select class="status-select">
                     <option value="1" ${i.status.id === 1 ? "selected" : ""}>Pendiente</option>
@@ -49,31 +59,25 @@ export async function openOrderItemsModal(order, onUpdate) {
 
   document.body.appendChild(modal);
 
-  // Cerrar modal
   modal.querySelector("#close-modal").addEventListener("click", () => modal.remove());
 
-  // Guardar cambios individuales
-  modal.querySelectorAll(".btn-save-status").forEach(btn => {
-    btn.addEventListener("click", async e => {
+  modal.querySelectorAll(".btn-save-status").forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
       const itemDiv = e.target.closest(".modal-item");
       const itemId = itemDiv.dataset.itemId;
       const newStatus = parseInt(itemDiv.querySelector(".status-select").value, 10);
 
-        try {
+      try {
         await onUpdate(itemId, newStatus);
         const statusText = mapStatusToSpanish(newStatus);
-
         const p = itemDiv.querySelector(".item-info p");
-        if (p) {
-            p.innerHTML = `<strong>Estado actual:</strong> ${statusText}`;
-        }
+        if (p) p.innerHTML = `<strong>Estado actual:</strong> ${statusText}`;
 
         itemDiv.classList.add("updated");
         setTimeout(() => itemDiv.classList.remove("updated"), 800);
-        } catch (err) {
+      } catch (err) {
         console.error("[Modal] Error al actualizar estado:", err);
-        }
-
+      }
     });
   });
 }

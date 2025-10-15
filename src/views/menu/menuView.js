@@ -14,6 +14,7 @@ export function renderMenuLayout() {
 
       <div id="search-sort-wrapper" class="search-sort-wrapper"></div>
       <div id="dish-list"></div>
+      <div id="pagination-controls" class="pagination-controls"></div>
     </section>
   `;
 }

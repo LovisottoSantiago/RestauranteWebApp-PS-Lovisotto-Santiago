@@ -3,8 +3,10 @@ export function renderOrderItem(item, onChange) {
   div.classList.add("order-item");
   div.dataset.itemId = item.itemId;
 
+  const defaultImage = "/src/assets/images/img-not-found.jpg";
+
   div.innerHTML = `
-    <img src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.name}">
+    <img src="${item.image || defaultImage}" alt="${item.name}" onerror="this.onerror=null; this.src='${defaultImage}';" class="order-item-image"/>
     <div class="item-info">
       <h3>${item.name}</h3>
 

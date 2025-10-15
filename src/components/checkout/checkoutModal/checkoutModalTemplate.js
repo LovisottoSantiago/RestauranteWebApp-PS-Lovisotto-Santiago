@@ -1,10 +1,6 @@
-export function createCheckoutModalHTML(deliveryTypes) {
-  const deliveryMap = {
-    "Delivery": "Entrega a domicilio",
-    "Take away": "Para llevar",
-    "Dine in": "Comer en el restaurante"
-  };
+import { mapDeliveryTypeName } from "../../deliveryTypeMapper/deliveryTypeMapper.js";
 
+export function createCheckoutModalHTML(deliveryTypes) {
   return `
     <div class="checkout-modal">
       <div class="checkout-modal-header">
@@ -17,21 +13,33 @@ export function createCheckoutModalHTML(deliveryTypes) {
           <label for="delivery-type">Tipo de entrega *</label>
           <select id="delivery-type" name="deliveryType" required>
             <option value="">Selecciona una opción</option>
-            ${deliveryTypes.map(type => 
-              `<option value="${type.id}">${deliveryMap[type.name] || type.name}</option>`
-            ).join('')}
+            ${deliveryTypes
+              .map(type => `<option value="${type.id}">${mapDeliveryTypeName(type.name)}</option>`)
+              .join("")}
           </select>
         </div>
 
         <div class="form-group" id="address-group" style="display: none;">
           <label for="delivery-address">Dirección de entrega *</label>
-          <input type="text" id="delivery-address" name="deliveryAddress" placeholder="Ej: Av. Corrientes 1234, Piso 5B" maxlength="200"/>
+          <input
+            type="text"
+            id="delivery-address"
+            name="deliveryAddress"
+            placeholder="Ej: Av. Corrientes 1234, Piso 5B"
+            maxlength="200"
+          />
           <small class="form-hint">Incluye referencias útiles (timbre, piso, etc.)</small>
         </div>
 
         <div class="form-group">
           <label for="order-notes">Notas adicionales</label>
-          <textarea id="order-notes" name="notes" placeholder="Indica si tenés alguna preferencia especial..." rows="3" maxlength="500"></textarea>
+          <textarea
+            id="order-notes"
+            name="notes"
+            placeholder="Indica si tenés alguna preferencia especial..."
+            rows="3"
+            maxlength="500"
+          ></textarea>
           <small class="form-hint">Ejemplo: portón negro, horario de entrega, etc.</small>
         </div>
 

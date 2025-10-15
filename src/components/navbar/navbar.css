@@ -76,7 +76,6 @@
   width: 100%;
 }
 
-/* 🔸 Enlace activo */
 .nav-links a.active {
   color: var(--color-primary-light);
   font-weight: 600;
@@ -87,7 +86,6 @@
   background: var(--color-primary-light);
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

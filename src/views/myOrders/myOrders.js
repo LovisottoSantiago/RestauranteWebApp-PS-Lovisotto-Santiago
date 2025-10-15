@@ -1,6 +1,8 @@
 import { getOrderById } from "../../services/order/getOrderById.js";
 import { showToast } from "../../components/toast/toast.js";
 import { formatArgentineTime } from "../../components/time/formatTime.js";
+import { mapStatusToSpanish } from "../../components/statusMapper/statusMapper.js";
+import { mapDeliveryTypeName } from "../../components/deliveryTypeMapper/deliveryTypeMapper.js";
 
 export async function renderMyOrders() {
   const container = document.getElementById("app");
@@ -37,9 +39,8 @@ export async function renderMyOrders() {
         })
       )
     ).filter(Boolean);
-    
-    const activeOrders = results.filter(o => o.status?.id !== 5);
 
+    const activeOrders = results.filter(o => o.status?.id !== 5);
     activeOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     if (activeOrders.length === 0) {
@@ -55,8 +56,8 @@ export async function renderMyOrders() {
           </header>
           <div class="order-card-body">
             <p><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
-            <p><strong>Estado:</strong> ${order.status?.name || "Desconocido"}</p>
-            <p><strong>Tipo de entrega:</strong> ${order.deliveryType?.name || "N/A"}</p>
+            <p><strong>Estado:</strong> ${mapStatusToSpanish(order.status?.id)}</p>
+            <p><strong>Tipo de entrega:</strong> ${mapDeliveryTypeName(order.deliveryType?.name)}</p>
             <p><strong>Creada:</strong> ${formatArgentineTime(order.createdAt)}</p>
             <hr id="order-items-separator" />
           </div>

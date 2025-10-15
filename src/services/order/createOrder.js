@@ -9,8 +9,7 @@ export async function createOrder(orderData) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(orderData),
     });
-
-    // Intentar parsear el cuerpo una sola vez
+    
     const rawText = await response.text();
     console.log("Raw response:", rawText);
 
@@ -22,7 +21,6 @@ export async function createOrder(orderData) {
     }
 
     if (!response.ok) {
-      // Mensaje corto para el usuario
       const message =
         data?.message ||
         "Error al crear la orden. Verifica los datos ingresados.";
@@ -30,7 +28,7 @@ export async function createOrder(orderData) {
       throw new Error(message);
     }
 
-    return data || {}; // si no hay JSON válido, devolver objeto vacío
+    return data || {}; 
   } catch (error) {
     console.error("createOrder error:", error);
     throw new Error("No se pudo crear la orden. Intenta nuevamente.");

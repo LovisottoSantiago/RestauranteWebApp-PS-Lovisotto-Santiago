@@ -6,13 +6,36 @@ import { renderAdmin } from "./views/admin/admin.js";
 import { renderMyOrders } from "./views/myOrders/myOrders.js";
 import { renderOrderDetail } from "./views/myOrders/orderDetail.js";
 import { showToast } from "./components/toast/toast.js";
+import { showConfirmModal } from "./components/confirmModal/confirmModal.js";
+
+let lastHash = null;
 
 export function router() {
   const hash = window.location.hash;
+  const isAdminLogged = sessionStorage.getItem("isAdminLoggedIn") === "true";
 
+  if (lastHash === "#/admin" && hash !== "#/admin" && isAdminLogged) {
+    const pendingHash = hash; 
+
+    window.location.hash = "#/admin";
+
+    showConfirmModal(
+      "¿Deseás cerrar la sesión?",
+      () => {
+        sessionStorage.removeItem("isAdminLoggedIn");
+        showToast("Sesión de administrador cerrada.", "info");
+        window.location.hash = pendingHash; 
+      }
+    );
+
+    return; 
+  }
+
+  
   const orderDetailMatch = hash.match(/^#\/order\/(\d+)$/);
   if (orderDetailMatch) {
     renderOrderDetail(orderDetailMatch[1]);
+    lastHash = hash;
     return;
   }
 
@@ -34,8 +57,7 @@ export function router() {
       break;
 
     case "#/admin": {
-      const isAdmin = sessionStorage.getItem("isAdminLoggedIn") === "true";
-      if (isAdmin) {
+      if (isAdminLogged) {
         renderAdmin();
       } else {
         showToast("Acceso denegado. Iniciá sesión primero.", "error");
@@ -49,6 +71,8 @@ export function router() {
       renderHome();
       break;
   }
+
+  lastHash = hash;
 }
 
 window.addEventListener("hashchange", router);

@@ -1,4 +1,4 @@
-export function showToast(message, type = 'success', duration = 3000) {
+export function showToast(message, type = 'success', duration = 2000) {
   const toast = document.createElement('div');
   toast.classList.add('toast', `toast-${type}`);
   

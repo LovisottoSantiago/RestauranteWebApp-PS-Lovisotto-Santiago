@@ -67,8 +67,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-
-/* Deshabilitar selección de texto en todo el documento */
 * {
   user-select: none !important; 
   -webkit-user-drag: none !important; 
