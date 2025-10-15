@@ -36,6 +36,7 @@ export async function openOrderItemsModal(order, onUpdate) {
                 <div class="item-info">
                   <h3>${i.dish.name}</h3>
                   <p><strong>Estado actual:</strong> ${mapStatusToSpanish(i.status.id)}</p>
+                  <p><strong>Notas:</strong> ${i.notes && i.notes.trim() !== "" ? i.notes : "No tiene notas"}</p>
 
                   <label>Actualizar estado:</label>
                   <select class="status-select">

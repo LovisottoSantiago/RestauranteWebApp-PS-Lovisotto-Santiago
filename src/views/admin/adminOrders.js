@@ -3,7 +3,7 @@ import { getOrderById } from "../../services/order/getOrderById.js";
 import { updateOrderItemStatus } from "../../services/order/updateOrderItem.js";
 import { showToast } from "../../components/toast/toast.js";
 import { openOrderItemsModal } from "./orderItemsModal.js";
-import { renderStatusCard } from "../../components/statusMapper/statusMapper.js";
+import { renderGenericOrderCard } from "../../components/genericOrderMapper/genericOrderMapper.js";
 
 export async function loadOrders(isAutoRefresh = false, filters = {}) {
   const container = document.getElementById("admin-orders");
@@ -22,7 +22,7 @@ export async function loadOrders(isAutoRefresh = false, filters = {}) {
     }
 
     orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    container.innerHTML = orders.map(renderStatusCard).join("");
+    container.innerHTML = orders.map(renderGenericOrderCard).join("");
 
     container.querySelectorAll(".btn-open-items").forEach((btn) => {
       btn.addEventListener("click", async (e) => {
@@ -50,5 +50,5 @@ function updateOrderCard(orderId, updatedOrder) {
   const container = document.getElementById("admin-orders");
   const card = container.querySelector(`[data-id="${orderId}"]`)?.closest(".admin-order-card");
   if (!card) return;
-  card.outerHTML = renderStatusCard(updatedOrder);
+  card.outerHTML = renderGenericOrderCard(updatedOrder);
 }

@@ -1,11 +1,33 @@
 .hero-section {
   position: relative;
-  height: 100vh;
+  width: 100%;
+  min-height: calc(100dvh - var(--navbar-height, 90px));
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary-dark) 0%,
+    var(--color-secondary) 100%
+  );
+  padding: 6rem 2rem 3rem;
+  box-sizing: border-box;
+}
+
+.hero-content {
+  z-index: 2;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.scroll-indicator {
+  position: relative; 
+  margin-top: auto;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
 }
 
 .hero-background {
@@ -25,13 +47,7 @@
   50% { transform: scale(1.05); }
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 2rem;
-  animation: fadeInUp 1s ease-out;
-}
+
 
 @keyframes fadeInUp {
   from {

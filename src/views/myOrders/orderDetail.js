@@ -4,6 +4,9 @@ import { getOrderById } from "../../services/order/getOrderById.js";
 import { openAddItemsModal } from "./addItems/addItemsModal.js";
 import { renderOrderTemplate } from "./orderDetailTemplate.js";
 import { attachOrderEvents } from "./orderDetailEvents.js";
+import { renderOrderItem } from "../../components/order/orderItem/orderItem.js";
+import { mapStatusToSpanish } from "../../components/statusMapper/statusMapper.js";
+import { mapDeliveryTypeName } from "../../components/deliveryTypeMapper/deliveryTypeMapper.js";
 
 let orderState = null;
 
@@ -59,38 +62,36 @@ export async function renderOrderDetail(orderId) {
       if (addBtn) addBtn.style.display = "none";
       if (confirmBtn) confirmBtn.style.display = "none";
     }
-
-    const orderItemsContainer = document.createElement("div");
-    orderItemsContainer.classList.add("order-items-grid");
-
-    import("../../../components/order/orderItem/orderItem.js").then(({ renderOrderItem }) => {
-      orderState.items.forEach(item => {
-        const itemElement = renderOrderItem(item, updated => {
-          console.debug("[OrderItem] Actualizado:", updated);
-        });
-
-        if (item.status.id === 5) {
-          itemElement.classList.add("locked-item");
-          const inputs = itemElement.querySelectorAll("input, textarea, button");
-          inputs.forEach(el => (el.disabled = true));
-        }
-
-        orderItemsContainer.appendChild(itemElement);
-      });
-    });
-
+    
     content.innerHTML = `
       <div class="order-summary">
-        <p><strong>Estado:</strong> ${orderState.meta.status.name}</p>
+        <p><strong>Estado:</strong> ${mapStatusToSpanish(orderState.meta.status.id)}</p>
         <p><strong>Total:</strong> $${orderState.meta.totalAmount.toFixed(2)}</p>
-        <p><strong>Tipo de entrega:</strong> ${orderState.meta.deliveryType.name}</p>
+        <p><strong>Tipo de entrega:</strong> ${mapDeliveryTypeName(orderState.meta.deliveryType.name)}</p>
         ${orderState.meta.deliveryTo ? `<p><strong>Dirección:</strong> ${orderState.meta.deliveryTo}</p>` : ""}
       </div>
-      <div class="order-items"><h2>Platos de la orden</h2></div>
-      ${!editable ? `<p class="locked-msg">Esta orden ya no puede modificarse (${orderState.meta.status.name}).</p>` : ""}
+      <div class="order-items">
+        <h2>Platos de la orden</h2>
+        <div class="order-items-grid"></div>
+      </div>
+      ${!editable ? `<p class="locked-msg">Esta orden ya no puede modificarse (${mapStatusToSpanish(orderState.meta.status.id)}).</p>` : ""}
     `;
 
-    content.querySelector(".order-items").appendChild(orderItemsContainer);
+    const orderItemsContainer = content.querySelector(".order-items-grid");
+
+    orderState.items.forEach(item => {
+      const itemElement = renderOrderItem(item, updated => {
+        console.debug("[OrderItem] Actualizado:", updated);
+      });
+
+      if (item.status.id === 5) {
+        itemElement.classList.add("locked-item");
+        const inputs = itemElement.querySelectorAll("input, textarea, button");
+        inputs.forEach(el => (el.disabled = true));
+      }
+
+      orderItemsContainer.appendChild(itemElement);
+    });
 
     if (editable) attachOrderEvents(container, orderState, updateOrder, showToast);
   }

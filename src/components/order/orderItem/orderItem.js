@@ -1,3 +1,5 @@
+import { mapStatusToSpanish } from "../../statusMapper/statusMapper.js";
+
 export function renderOrderItem(item, onChange) {
   const div = document.createElement("div");
   div.classList.add("order-item");
@@ -6,7 +8,12 @@ export function renderOrderItem(item, onChange) {
   const defaultImage = "/src/assets/images/img-not-found.jpg";
 
   div.innerHTML = `
-    <img src="${item.image || defaultImage}" alt="${item.name}" onerror="this.onerror=null; this.src='${defaultImage}';" class="order-item-image"/>
+    <img 
+      src="${item.image || defaultImage}" 
+      alt="${item.name}" 
+      onerror="this.onerror=null; this.src='${defaultImage}';" 
+      class="order-item-image"
+    />
     <div class="item-info">
       <h3>${item.name}</h3>
 
@@ -25,7 +32,7 @@ export function renderOrderItem(item, onChange) {
         <button class="qty-btn qty-increase">+</button>
       </div>
 
-      <p>Estado: ${item.status.name}</p>
+      <p>Estado: ${mapStatusToSpanish(item.status.id)}</p>
     </div>
   `;
 
