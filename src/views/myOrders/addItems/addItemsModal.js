@@ -1,5 +1,5 @@
 import { createModal } from "../../../components/modal/modal.js";
-import { renderCategoryList } from "../../../components/category/categoryList/categoryList.js";
+import { renderCategoryListForOrder } from "../../../components/category/categoryList/categoryListForOrder.js";
 import { renderSearchBar } from "../../../components/searchBar/searchBar.js";
 import { addItemsFilters } from "./addItemsFilter.js";
 import { renderDishCardWithAdd } from "../../../components/dish/dishCard/DishCardWithAdd.js";
@@ -15,24 +15,25 @@ export async function openAddItemsModal(orderId, onAddedCallback) {
       </div>
       <div id="search-sort-wrapper" class="search-sort-wrapper"></div>
       <div id="dish-list" class="dish-list"></div>
+      <div id="pagination-container" class="pagination-container"></div>
     </div>
   `;
 
   const overlay = createModal(modalContent, `Agregar platos a la orden #${orderId}`);
 
-  await renderCategoryList(overlay.querySelector("#category-list"));
-  setupAddItemsHeader(overlay, orderId);
+  await renderCategoryListForOrder(overlay, orderId, onAddedCallback);
+  setupAddItemsHeader(overlay, orderId, onAddedCallback);
   await renderDishListWithAdd(overlay, orderId, onAddedCallback);
 
   return overlay;
 }
 
-function setupAddItemsHeader(overlay, orderId) {
+function setupAddItemsHeader(overlay, orderId, onAddedCallback) {
   const wrapper = overlay.querySelector("#search-sort-wrapper");
 
   const searchBar = renderSearchBar((term) => {
     addItemsFilters.setSearch(term);
-    updateDishList(overlay, orderId);
+    updateDishList(overlay, orderId, onAddedCallback);
   });
 
   const sortSelect = document.createElement("select");
@@ -44,7 +45,7 @@ function setupAddItemsHeader(overlay, orderId) {
   `;
   sortSelect.addEventListener("change", (e) => {
     addItemsFilters.setSort(e.target.value);
-    updateDishList(overlay, orderId);
+    updateDishList(overlay, orderId, onAddedCallback);
   });
 
   const row = document.createElement("div");
@@ -54,16 +55,16 @@ function setupAddItemsHeader(overlay, orderId) {
   wrapper.appendChild(row);
 }
 
-async function updateDishList(overlay, orderId) {
+async function updateDishList(overlay, orderId, onAddedCallback) {
   const filters = addItemsFilters.get();
-  await renderDishListWithAdd(overlay, orderId, filters);
+  await renderDishListWithAdd(overlay, orderId, onAddedCallback, filters);
 }
 
-export async function renderDishListWithAdd(overlay, orderId, onAddedCallback) {
+export async function renderDishListWithAdd(overlay, orderId, onAddedCallback, filters = {}) {
   const list = overlay.querySelector("#dish-list");
   list.innerHTML = `<p>Cargando platos...</p>`;
 
-  const dishes = await getAllDishes();
+  const dishes = await getAllDishes(filters);
 
   if (!dishes.length) {
     list.innerHTML = `<p>No hay platos disponibles.</p>`;
@@ -77,25 +78,18 @@ export async function renderDishListWithAdd(overlay, orderId, onAddedCallback) {
       dish,
       async () => {
         const payload = {
-          items: [
-            {
-              id: dish.id,
-              quantity: 1,
-              notes: "",
-            },
-          ],
+          items: [{ id: dish.id, quantity: 1, notes: "" }],
         };
 
         try {
-          await updateOrder(orderId, payload);          
+          await updateOrder(orderId, payload);
           if (onAddedCallback) await onAddedCallback();
         } catch (err) {
           console.error("[Add Item PUT Error]", err);
         }
       },
-      { confirmBeforeAdd: true } 
+      { confirmBeforeAdd: true }
     );
-
     list.appendChild(card);
   });
 }

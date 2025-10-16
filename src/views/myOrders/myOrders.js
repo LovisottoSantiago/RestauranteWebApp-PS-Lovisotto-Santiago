@@ -18,7 +18,17 @@ export async function renderMyOrders() {
   `;
 
   const ordersContainer = document.getElementById("orders-list");
-  const savedOrders = JSON.parse(localStorage.getItem("userOrders") || "[]");
+
+  let savedOrders = [];
+  try {
+    const parsed = JSON.parse(localStorage.getItem("userOrders") || "[]");
+    if (Array.isArray(parsed)) {
+      savedOrders = parsed.map(id => String(id)).filter(Boolean);
+    }
+  } catch {
+    console.warn("[renderMyOrders] userOrders inválido en localStorage");
+    savedOrders = [];
+  }
 
   if (savedOrders.length === 0) {
     ordersContainer.innerHTML = `<p>No tenés comandas registradas en este navegador.</p>`;
